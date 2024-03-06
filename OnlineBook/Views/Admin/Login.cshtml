@@ -1,0 +1,87 @@
+﻿@model OnlineBook.Models.Admin
+@{
+    ViewBag.Title = "Login";
+}
+
+<Doctype>
+    <html>
+    <head>
+        <link href="~/Content/loginstyle.css" rel="stylesheet" />
+    </head>
+    <body>
+        <center>
+            <h2>Login</h2>
+
+            @using (Html.BeginForm())
+            {
+
+                <form class="" action="" method="post">
+                    <div class="imgcontainer">
+                    </div>
+
+                    <div class="container">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label for="uname"><b>Email</b></label>
+                                    </td>
+                                    <td>
+                                        @*<input type="text" placeholder="Enter Username" name="uname" required>*@
+                                        @Html.TextBoxFor(x => x.adminEmail, new { @class = "form-control", @placeholder = "Admin Email" })
+                                        <span style="color:red">@Html.ValidationMessageFor(x => x.adminEmail)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="psw"><b>Password</b></label>
+                                    </td>
+                                    <td>
+                                        @*<input type="password" placeholder="Enter Password" name="psw" required>*@
+
+                                        @Html.PasswordFor(x => x.adminpassword, new { @class = "form-control", @placeholder = "Password" })
+                                        <span style="color:red">@Html.ValidationMessageFor(x => x.adminpassword)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Login" class="btn btn-success" style="float:right" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+                        <br />
+
+
+
+                        <br />
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <p style="color:red">@ViewBag.error</p>
+                    </div>
+                </form>}
+        </center>
+
+    </body>
+</html>
+<script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@section Scripts
+    {
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

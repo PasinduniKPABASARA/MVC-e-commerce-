@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EBookpvtDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="EBookpvtDBModelStoreContainer">
+    <EntitySet Name="Books" EntityType="EBookpvtDBModel.Store.Books" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="EBookpvtDBModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Admins" EntityType="EBookpvtDBModel.Store.Admins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categories" EntityType="EBookpvtDBModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Feedbacks" EntityType="EBookpvtDBModel.Store.Feedbacks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Invoices" EntityType="EBookpvtDBModel.Store.Invoices" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Orders" EntityType="EBookpvtDBModel.Store.Orders" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__Book__categoryId__3A81B327" Association="EBookpvtDBModel.Store.FK__Book__categoryId__3A81B327">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Book" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Feedback__bookId__17036CC0" Association="EBookpvtDBModel.Store.FK__Feedback__bookId__17036CC0">
+      <End Role="Book" EntitySet="Books" />
+      <End Role="Feedback" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Feedback__userId__160F4887" Association="EBookpvtDBModel.Store.FK__Feedback__userId__160F4887">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Feedback" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__bookId__73BA3083" Association="EBookpvtDBModel.Store.FK__Orders__bookId__73BA3083">
+      <End Role="Book" EntitySet="Books" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__invoiceI__74AE54BC" Association="EBookpvtDBModel.Store.FK__Orders__invoiceI__74AE54BC">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__userId__72C60C4A" Association="EBookpvtDBModel.Store.FK__Orders__userId__72C60C4A">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Books">
+    <Key>
+      <PropertyRef Name="bookId" />
+    </Key>
+    <Property Name="bookId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bookName" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="bookAuthor" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="bookDescription" Type="varchar(max)" Nullable="false" />
+    <Property Name="bookPrice" Type="float" Nullable="false" />
+    <Property Name="bookQuantity" Type="int" Nullable="false" />
+    <Property Name="bookImage" Type="varchar(max)" Nullable="false" />
+    <Property Name="categoryId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userFirstName" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="userLastName" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="userNIC" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="userDOB" Type="datetime" Nullable="false" />
+    <Property Name="userPhone" Type="int" Nullable="false" />
+    <Property Name="userEmail" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="userpassword" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="userAddress" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="userRole" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="adminId" />
+    </Key>
+    <Property Name="adminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="adminFirstName" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="adminLastName" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="adminEmail" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="adminpassword" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="categoryId" />
+    </Key>
+    <Property Name="categoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoryName" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="categoryStatus" Type="int" Nullable="true" />
+    <Property Name="categoryImage" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Feedbacks">
+    <Key>
+      <PropertyRef Name="feddbackId" />
+    </Key>
+    <Property Name="feddbackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="feedbackDescription" Type="varchar(max)" Nullable="false" />
+    <Property Name="feedbackDate" Type="datetime" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="true" />
+    <Property Name="bookId" Type="int" Nullable="true" />
+    <Property Name="userName" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Invoices">
+    <Key>
+      <PropertyRef Name="invoiceId" />
+    </Key>
+    <Property Name="invoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="invoiceDate" Type="datetime" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="true" />
+    <Property Name="invoicetotal" Type="float" Nullable="true" />
+    <Property Name="userName" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="orderId" />
+    </Key>
+    <Property Name="orderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderDate" Type="datetime" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="true" />
+    <Property Name="bookId" Type="int" Nullable="true" />
+    <Property Name="invoiceId" Type="int" Nullable="true" />
+    <Property Name="orderQty" Type="int" Nullable="true" />
+    <Property Name="orderBill" Type="float" Nullable="true" />
+    <Property Name="orderUnitPrice" Type="float" Nullable="true" />
+    <Property Name="bookName" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="FK__Book__categoryId__3A81B327">
+    <End Role="Category" Type="EBookpvtDBModel.Store.Categories" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Book" Type="EBookpvtDBModel.Store.Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="categoryId" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Feedback__bookId__17036CC0">
+    <End Role="Book" Type="EBookpvtDBModel.Store.Books" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Feedback" Type="EBookpvtDBModel.Store.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="bookId" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="bookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Feedback__userId__160F4887">
+    <End Role="User" Type="EBookpvtDBModel.Store.Users" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Feedback" Type="EBookpvtDBModel.Store.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__bookId__73BA3083">
+    <End Role="Book" Type="EBookpvtDBModel.Store.Books" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="EBookpvtDBModel.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="bookId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="bookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__invoiceI__74AE54BC">
+    <End Role="Invoice" Type="EBookpvtDBModel.Store.Invoices" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="EBookpvtDBModel.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="invoiceId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="invoiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__userId__72C60C4A">
+    <End Role="User" Type="EBookpvtDBModel.Store.Users" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="EBookpvtDBModel.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

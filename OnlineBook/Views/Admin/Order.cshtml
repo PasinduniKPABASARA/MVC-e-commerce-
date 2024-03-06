@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Order</h2>
+
+
+@if (Model != null)
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Invoice Id</th>
+                <th>Date</th>
+                <th>User Name</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model as List<OnlineBook.Models.Invoice>)
+            {
+                <tr>
+                    <td>@item.invoiceId</td>
+                    <td>@item.invoiceDate</td>
+                    <td>@item.userName</td>
+                    <td>@item.invoicetotal</td>
+                    <td>
+                        <a class="btn btn danger btn-sm" href="@Url.Action("ViewOrder", new { id=item.invoiceId, name=item.userName})">&#xf15b;</a>
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("ReportBill", "Admin", new { id = item.invoiceId }, FormMethod.Post))
+                        {
+                            <button id="submitButton" type="submit" class="btn btn-primary">Download Order</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    using(Html.BeginForm("Report", "Admin", FormMethod.Post))
+    {
+        <button id="submitButton" type="submit" class="btn btn-primary">Download Invoice Summary</button>
+    }
+
+}

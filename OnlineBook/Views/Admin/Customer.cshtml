@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+
+@if (Model != null)
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>NIC</th>
+                <th>Birthday</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model as List<OnlineBook.Models.User>)
+            {
+                <tr>
+                    <td>@item.userFirstName</td>
+                    <td>@item.userLastName</td>
+                    <td>@item.userNIC</td>
+                    <td>@item.userDOB</td>
+                    <td>@item.userPhone</td>
+                    <td>@item.userEmail</td>
+                    <td>@item.userAddress</td>
+                    <td>
+                        <a class="btn btn danger btn-sm" href="@Url.Action("Remove", new { id=item.userId})">&#10060;</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

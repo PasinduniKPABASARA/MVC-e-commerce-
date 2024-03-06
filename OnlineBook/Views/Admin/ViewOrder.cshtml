@@ -1,0 +1,55 @@
+﻿
+@model OnlineBook.Models.OrderView
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View Order</h2>
+
+<hr />
+@if (Model != null)
+{
+    foreach (var item in Model.invoice)
+    {
+        <h4> Invoice Id : @item.invoiceId</h4>
+        <h4> Customer Name : @item.userName</h4>
+        <h6> Date : @item.invoiceDate</h6>
+        <h6> Total (Rs) : @item.invoicetotal</h6>
+    }
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Book Id</th>
+                <th>Book Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Unit Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.order)
+            {
+                <tr>
+                    <td>@item.bookId</td>
+                    <td>@item.bookName</td>
+                    <td>@item.orderQty</td>
+                    <td>@item.orderBill</td>
+                    <td>@item.orderUnitPrice</td>
+
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+
+            @foreach (var item in Model.invoice)
+            {
+                <tr>
+                    <td colspan="4"></td>
+                    <td>@item.invoicetotal</td>
+                </tr>
+            }
+        </tfoot>
+    </table>
+        
+}

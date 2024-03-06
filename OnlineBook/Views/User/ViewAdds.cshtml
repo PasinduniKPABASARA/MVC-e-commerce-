@@ -1,0 +1,265 @@
+﻿
+@model OnlineBook.Models.ProductFeedback
+
+
+
+@{ ViewBag.Title = "ViewAdds";
+    Layout = "~/Views/Shared/_Layout1.cshtml"; }
+
+<style>
+    td {
+        padding: 20px;
+    }
+
+    body {
+        margin-top: 20px;
+    }
+
+    .content-item {
+        padding: 30px 0;
+        background-color: #FFFFFF;
+    }
+
+        .content-item.grey {
+            background-color: #F0F0F0;
+            padding: 50px 0;
+            height: 100%;
+        }
+
+        .content-item h2 {
+            font-weight: 700;
+            font-size: 35px;
+            line-height: 45px;
+            text-transform: uppercase;
+            margin: 20px 0;
+        }
+
+        .content-item h3 {
+            font-weight: 400;
+            font-size: 20px;
+            color: #555555;
+            margin: 10px 0 15px;
+            padding: 0;
+        }
+
+    .content-headline {
+        height: 1px;
+        text-align: center;
+        margin: 20px 0 70px;
+    }
+
+        .content-headline h2 {
+            background-color: #FFFFFF;
+            display: inline-block;
+            margin: -20px auto 0;
+            padding: 0 20px;
+        }
+
+    .grey .content-headline h2 {
+        background-color: #F0F0F0;
+    }
+
+    .content-headline h3 {
+        font-size: 14px;
+        color: #AAAAAA;
+        display: block;
+    }
+
+
+    #comments {
+        box-shadow: 0 -1px 6px 1px rgba(0,0,0,0.1);
+        background-color: #FFFFFF;
+    }
+
+        #comments form {
+            margin-bottom: 30px;
+        }
+
+        #comments .btn {
+            margin-top: 7px;
+        }
+
+        #comments form fieldset {
+            clear: both;
+        }
+
+        #comments form textarea {
+            height: 100px;
+        }
+
+        #comments .media {
+            border-top: 1px dashed #DDDDDD;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+            #comments .media > .pull-left {
+                margin-right: 20px;
+            }
+
+            #comments .media img {
+                max-width: 100px;
+            }
+
+            #comments .media h4 {
+                margin: 0 0 10px;
+            }
+
+                #comments .media h4 span {
+                    font-size: 14px;
+                    float: right;
+                    color: #999999;
+                }
+
+            #comments .media p {
+                margin-bottom: 15px;
+                text-align: justify;
+            }
+
+        #comments .media-detail {
+            margin: 0;
+        }
+
+            #comments .media-detail li {
+                color: #AAAAAA;
+                font-size: 12px;
+                padding-right: 10px;
+                font-weight: 600;
+            }
+
+            #comments .media-detail a:hover {
+                text-decoration: underline;
+            }
+
+            #comments .media-detail li:last-child {
+                padding-right: 0;
+            }
+
+            #comments .media-detail li i {
+                color: #666666;
+                font-size: 15px;
+                margin-right: 10px;
+            }
+</style>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <img src="~/Content/img/ecommerce-2140603_960_720.jpg" class="img img-responsive" style="width:100%" />
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="text-center">
+            <h1>@Model.aVM.bookName<small>AD-ID:@Model.aVM.bookId</small></h1>
+
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-lg-6 col-md-6">
+        <img src="@Url.Content(@Model.aVM.bookImage)" style="width:250PX; height:225PX; float:right" />
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+
+        <div>
+            <h1>Description: </h1>
+            <p>@Model.aVM.bookDescription</p>
+        </div>
+
+
+
+        <table>
+
+            <tr> <td>Price: </td> <td>@Model.aVM.bookPrice </td> </tr>
+            <tr> <td>Category: </td> <td>@Model.aVM.categoryName </td> </tr>
+
+
+
+
+
+        </table>
+        <h4 style="text-align:center">
+            <a class="btn btn-primary btn-sm" href="@Url.Action("AddToCart", new {id = Model.aVM.bookId})">
+                <i style="font-size:24px" class="fa fa-shopping-cart"></i>Add to cart
+            </a>
+        </h4>
+    </div>
+</div>
+<br />
+<br />
+
+
+
+
+
+@using (Html.BeginForm("ViewAdds", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <section class="content-item" id="comments">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+
+                </div>
+                <div class="col-lg-8">
+                    <center>
+                        @if (Session["userID"] != null)
+                        {
+                            <form>
+                                <h3 class="pull-left">New Comment</h3>
+                                <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-lg-2 hidden-xs">
+                                            <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                        </div>
+                                        <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                            @* <textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>*@
+                                            @Html.TextAreaFor(x => x.aVM.feedbackDescription, new { @class = "form-control", @placeholder = "Your message" })
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        }
+                        </center>
+
+
+                    @if (Model.fdb != null)
+                    {
+                        foreach (var item in Model.fdb)
+                        {
+                            <div class="media">
+                                <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a>
+                                <div class="media-body">
+
+                                    <h4 class="media-heading">@item.userName</h4>
+                                    <p>@item.feedbackDescription</p>
+                                    <ul class="list-unstyled list-inline media-detail pull-left">
+                                        <li><i class="fa fa-calendar"></i>@item.feedbackDate</li>
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        </div>
+    </section>}
+
+
+
+<div class="col-lg-2 col-md-2">
+    <img src="~/Content/img/150_sleep1_600.gif" class="img img-responsive" style=" height:500px;" />
+</div>
+

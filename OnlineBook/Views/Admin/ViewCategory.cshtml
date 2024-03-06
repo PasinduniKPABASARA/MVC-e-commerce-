@@ -1,0 +1,93 @@
+﻿
+@using PagedList.Mvc
+@model  PagedList.IPagedList<OnlineBook.Models.Category>
+
+@{ ViewBag.Title = "Category View";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>View  Category</title>
+    <link href="~/Content/paginition.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/Content/Cat_Style/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Cat_Style/style.css" rel="stylesheet" />
+    <link href="~/Content/Cat_Style/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Cat_Style/flexslider.css" rel="stylesheet" />
+
+</head>
+
+
+<body>
+        <div class="container">
+            <div class="container" style="height:1150px; ">
+                <hr />
+                <h1 style="text-align:center"> OUR Category</h1>
+                <hr />
+
+
+                <div class="row" style="margin-bottom:40px">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+
+
+
+
+
+                            <div class="col-lg-4 col-md-4" style="height:220px;margin-top:160px">
+                                <img src="@Url.Content(item.categoryImage)" style=" height:250px;width:225px" />
+                                <br />
+                                <h4 style="color:#808080; font-family:'Arial Rounded MT';text-align:center;margin-top:20px"> @Html.ActionLink(@item.categoryName, "DisplayAd", new { id = @item.categoryId })</h4>
+                                <br />
+                                <br />
+                                <div style="margin-left:160px">
+                                    @Html.ActionLink("Delete", "DeleteCat", new { id = item.categoryId }, new { @class = "btn btn-danger btn-sm" })
+
+                                </div>
+                            </div>
+
+                        }
+                    }
+
+
+
+
+
+                </div>
+
+            </div>
+
+            <div style="margin-top:370px">
+                <div id="container" style="margin-left: 100px">
+                    <p></p>
+                    <p></p>
+                    <div class="pagination" style="margin-left: 400px">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                        of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("ViewCategory", new { page }))
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+</body>
+</html>
+
+
+<script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

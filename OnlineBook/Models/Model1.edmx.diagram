@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0b4a87e5ffc348dfa033fdec7f31d5b0" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="EBookpvtDBModel.Book" Width="1.5" PointX="6.125" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EBookpvtDBModel.User" Width="1.5" PointX="8.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EBookpvtDBModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EBookpvtDBModel.Category" Width="1.5" PointX="3.875" PointY="4.75" />
+        <AssociationConnector Association="EBookpvtDBModel.FK__Book__categoryId__3A81B327" />
+        <EntityTypeShape EntityType="EBookpvtDBModel.Feedback" Width="1.5" PointX="10.625" PointY="2.75" />
+        <AssociationConnector Association="EBookpvtDBModel.FK__Feedback__bookId__17036CC0" />
+        <AssociationConnector Association="EBookpvtDBModel.FK__Feedback__userId__160F4887" />
+        <EntityTypeShape EntityType="EBookpvtDBModel.Invoice" Width="1.5" PointX="3.375" PointY="0.875" />
+        <EntityTypeShape EntityType="EBookpvtDBModel.Order" Width="1.5" PointX="13.625" PointY="2.375" />
+        <AssociationConnector Association="EBookpvtDBModel.FK__Orders__bookId__73BA3083" />
+        <AssociationConnector Association="EBookpvtDBModel.FK__Orders__invoiceI__74AE54BC" />
+        <AssociationConnector Association="EBookpvtDBModel.FK__Orders__userId__72C60C4A" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

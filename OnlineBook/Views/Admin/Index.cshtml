@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/AddCat_Style/font-awesome.min.css" rel="stylesheet" />
+<style>
+    .card {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+        /* On mouse-over, add a deeper shadow */
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    /* Add some padding inside the card container */
+    .container5 {
+        padding: 2px 16px;
+    }
+</style>
+<div class="container">
+    <div class="container" style="height:1150px; ">
+        <hr />
+        <h1 style="text-align:center"> Admin Dashboard</h1>
+        <hr />
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="container5">
+                        <center>
+<i class="fa fa-plus" aria-hidden="true" style="font-size:48px"></i><h4><b> @Html.ActionLink("Category Add", "Category", "Admin", null, new { @class = "ht" })</b></h4>
+
+                        </center>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="container5">
+                        <center>
+                            <h4>
+                                <b>
+                                    @Html.ActionLink("Category View", "ViewCategory", "Admin", null, new { @class = "ht" })
+                                </b>
+                            </h4>
+                        </center>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="container5">
+                        <center>
+                            <h4>
+                                <b>
+                                    @Html.ActionLink("Post An Ad", "CreateAd", "Admin", null, new { @class = "ht" })
+                                </b>
+                            </h4>
+                        </center>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="container5">
+                        <center>
+                            <h4>
+                                <b>
+                                    @Html.ActionLink("Customer", "Customer", "Admin", null, new { @class = "ht" })
+                                </b>
+                            </h4>
+                        </center>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="container5">
+                        <center>
+                            <h4>
+                                <b>
+                                    @Html.ActionLink("Order", "Order", "Admin", null, new { @class = "ht" })
+                                </b>
+                            </h4>
+                        </center>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
